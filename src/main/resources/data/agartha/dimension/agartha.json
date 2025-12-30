@@ -1,0 +1,36 @@
+{
+  "type": "agartha:agartha_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "minecraft:caves",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "agartha:snowy_caves",
+          "parameters": {
+            "temperature": [-1.0, -0.2],
+            "humidity": [-1.0, 1.0],
+            "continentalness": [-1.0, 1.0],
+            "erosion": [-1.0, 1.0],
+            "weirdness": [-1.0, 1.0],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "agartha:lush_meadow",
+          "parameters": {
+            "temperature": [0.2, 1.0],
+            "humidity": [-1.0, 1.0],
+            "continentalness": [-1.0, 1.0],
+            "erosion": [-1.0, 1.0],
+            "weirdness": [-1.0, 1.0],
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

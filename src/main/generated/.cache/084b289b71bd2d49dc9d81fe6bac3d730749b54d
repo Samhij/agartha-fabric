@@ -1,0 +1,9 @@
+// 1.20.1	2025-12-30T22:44:24.3975881	Agartha/World Gen
+5f0d10779659f98cf7be62f1c9c597fb5208638f data\agartha\worldgen\biome\snowy_caves.json
+1d8d4fecae208803fe0d2fc3c22b28c277e72103 data\agartha\worldgen\configured_feature\agarthium_ore.json
+c0fe60f0eb987c004454dcdbecd8533b0a2ee4a6 data\agartha\worldgen\configured_feature\snow_cover.json
+f4f05f57f1f98393e8fe3a3cae6306568cdd8eb9 data\agartha\dimension_type\agartha_type.json
+d2a49b7b77c0b7655340e9e481800c3b5f78180a data\agartha\damage_type\agarthan.json
+e24c0817c82653e9a9fe10a8240ca45fcdad6c36 data\agartha\worldgen\placed_feature\agarthium_ore_placed.json
+da93c6b0fcd17af5d3af9cdb1fdfdfbf66c92078 data\agartha\worldgen\biome\lush_meadow.json
+485f0b4608f2260d3c20c8934fbaec4fcfffa643 data\agartha\worldgen\placed_feature\snow_cover_placed.json

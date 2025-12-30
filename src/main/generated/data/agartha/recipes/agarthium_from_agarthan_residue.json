@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "agartha:agarthan_residue"
+    },
+    {
+      "item": "agartha:agarthan_residue"
+    },
+    {
+      "item": "agartha:agarthan_residue"
+    },
+    {
+      "item": "agartha:agarthan_residue"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "result": {
+    "item": "agartha:agarthium"
+  }
+}

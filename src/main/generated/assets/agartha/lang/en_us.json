@@ -1,0 +1,17 @@
+{
+  "advancements.agartha.white_monster.description": "Kill Yakub and obtain a can of White Monster",
+  "advancements.agartha.white_monster.title": "The Good Stuff",
+  "block.agartha.agarthium_block": "Block of Agarthium",
+  "block.agartha.agarthium_ore": "Agarthium Ore",
+  "death.attack.agarthan": "%1$s was not allowed into Agartha.",
+  "death.attack.agarthan.player": "%1$s was not allowed into Agartha by %2$s.",
+  "entity.agartha.yakub": "Yakub",
+  "gamerule.category.agartha": "Agartha",
+  "item.agartha.agarthan_residue": "Agarthan Residue",
+  "item.agartha.agarthium": "Agarthium",
+  "item.agartha.down_under_music_disc": "Music Disc",
+  "item.agartha.down_under_music_disc.desc": "YourLocalSchizo - Down Under - Agartha Remix",
+  "item.agartha.white_monster": "White Monster",
+  "itemGroup.agarthan_blocks": "Agarthan Blocks",
+  "itemGroup.agarthan_items": "Agarthan Items"
+}

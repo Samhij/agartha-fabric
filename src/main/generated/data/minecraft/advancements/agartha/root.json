@@ -1,0 +1,39 @@
+{
+  "criteria": {
+    "got_white_monster": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "agartha:white_monster"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "description": {
+      "translate": "advancements.agartha.white_monster.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "agartha:white_monster",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.agartha.white_monster.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_white_monster"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

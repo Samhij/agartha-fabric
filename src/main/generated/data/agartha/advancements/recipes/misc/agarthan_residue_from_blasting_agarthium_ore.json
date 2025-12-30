@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_agarthium_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "agartha:agarthium_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:agarthan_residue_from_blasting_agarthium_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_agarthium_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:agarthan_residue_from_blasting_agarthium_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

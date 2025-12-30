@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "agartha",
+	"version": "${version}",
+	"name": "Agartha",
+	"description": "Do you come from a land down under?",
+	"authors": [
+		"Lonk"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "GNU General Public License v3.0",
+	"icon": "assets/agartha/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.lonk.agartha.AgarthaMod"
+		],
+		"client": [
+			"net.lonk.agartha.AgarthaModClient"
+		],
+		"fabric-datagen": [
+			"net.lonk.agartha.AgarthaModDataGenerator"
+		]
+	},
+	"mixins": [
+		"agartha.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
