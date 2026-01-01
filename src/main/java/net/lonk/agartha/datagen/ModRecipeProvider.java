@@ -25,6 +25,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         offerReversibleCompactingRecipes(consumer, RecipeCategory.MISC, ModItems.AGARTHIUM, RecipeCategory.MISC, ModBlocks.AGARTHIUM_BLOCK);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CONCENTRATED_CAFFEINE)
+                .input(ModItems.WHITE_MONSTER, 9)
+                .criterion(hasItem(ModItems.WHITE_MONSTER), conditionsFromItem(ModItems.WHITE_MONSTER))
+                .offerTo(consumer);
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.AGARTHIUM)
                 .input(ModItems.AGARTHAN_RESIDUE, 4)
                 .input(Items.AMETHYST_SHARD, 4)

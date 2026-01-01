@@ -1,5 +1,6 @@
 package net.lonk.agartha.entity.custom;
 
+import net.lonk.agartha.datagen.ModDynamicRegistryProvider;
 import net.lonk.agartha.event.YakubSpawnHandler;
 import net.lonk.agartha.gamerule.ModGameRules;
 import net.lonk.agartha.sound.ModSounds;
@@ -22,6 +23,7 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -152,11 +154,22 @@ public class YakubEntity extends PathAwareEntity {
 
     @Override
     public boolean tryAttack(Entity target) {
-        if (target instanceof PlayerEntity playerEntity) {
-            if (playerEntity.isDead()) {
+        if (target instanceof PlayerEntity player) {
+            DamageSource source = new DamageSource(
+                    this.getWorld().getRegistryManager()
+                    .get(RegistryKeys.DAMAGE_TYPE)
+                    .entryOf(ModDynamicRegistryProvider.AGARTHAN_DAMAGE)
+            );
+
+            target.damage(source, (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
+
+            if (player.isDead()) {
                 this.remove(RemovalReason.DISCARDED);
             }
+
+            return false;
         }
+
         return super.tryAttack(target);
     }
 

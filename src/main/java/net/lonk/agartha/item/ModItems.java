@@ -2,6 +2,7 @@ package net.lonk.agartha.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.lonk.agartha.AgarthaMod;
+import net.lonk.agartha.item.custom.ConcentratedCaffeineItem;
 import net.lonk.agartha.item.custom.WhiteMonsterItem;
 import net.lonk.agartha.sound.ModSounds;
 import net.minecraft.item.Item;
@@ -13,7 +14,10 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
     public static final Item WHITE_MONSTER = registerItem("white_monster",
-            new WhiteMonsterItem(new FabricItemSettings().rarity(Rarity.EPIC).maxDamage(5)));
+            new WhiteMonsterItem(new FabricItemSettings().rarity(Rarity.RARE).maxDamage(5)));
+
+    public static final Item CONCENTRATED_CAFFEINE = registerItem("concentrated_caffeine",
+            new ConcentratedCaffeineItem(new FabricItemSettings().rarity(Rarity.EPIC)));
 
     public static final Item DOWN_UNDER_MUSIC_DISC = registerItem("down_under_music_disc",
             new MusicDiscItem(7, ModSounds.DOWN_UNDER, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 158));

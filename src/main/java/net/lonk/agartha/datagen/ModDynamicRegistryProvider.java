@@ -21,12 +21,21 @@ public class ModDynamicRegistryProvider extends FabricDynamicRegistryProvider {
     }
 
     public static final RegistryKey<DamageType> AGARTHAN_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(AgarthaMod.MOD_ID, "agarthan"));
+    public static final RegistryKey<DamageType> HEART_ATTACK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(AgarthaMod.MOD_ID, "heart_attack"));
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        // Damage type
+        // Damage types
         entries.add(AGARTHAN_DAMAGE, new DamageType(
                 "agarthan",
+                DamageScaling.NEVER,
+                0.1f,
+                DamageEffects.HURT,
+                DeathMessageType.DEFAULT
+        ));
+
+        entries.add(HEART_ATTACK, new DamageType(
+                "heart_attack",
                 DamageScaling.NEVER,
                 0.1f,
                 DamageEffects.HURT,

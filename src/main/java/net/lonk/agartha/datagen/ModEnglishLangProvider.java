@@ -15,6 +15,7 @@ public class ModEnglishLangProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
         translationBuilder.add(ModItems.WHITE_MONSTER, "White Monster");
+        translationBuilder.add(ModItems.CONCENTRATED_CAFFEINE, "Concentrated Caffeine");
         translationBuilder.add(ModItems.DOWN_UNDER_MUSIC_DISC, "Music Disc");
         translationBuilder.add(ModItems.DOWN_UNDER_MUSIC_DISC.getTranslationKey() + ".desc", "YourLocalSchizo - Down Under - Agartha Remix");
 
@@ -28,6 +29,8 @@ public class ModEnglishLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add("death.attack.agarthan", "%1$s was not allowed into Agartha.");
         translationBuilder.add("death.attack.agarthan.player", "%1$s was not allowed into Agartha by %2$s.");
+
+        translationBuilder.add("death.attack.heart_attack", "%1$s had a heart attack.");
 
         translationBuilder.add("itemGroup.agarthan_items", "Agarthan Items");
         translationBuilder.add("itemGroup.agarthan_blocks", "Agarthan Blocks");

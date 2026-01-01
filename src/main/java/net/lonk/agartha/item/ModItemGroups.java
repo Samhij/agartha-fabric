@@ -17,6 +17,7 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.WHITE_MONSTER))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.WHITE_MONSTER);
+                        entries.add(ModItems.CONCENTRATED_CAFFEINE);
                         entries.add(ModItems.DOWN_UNDER_MUSIC_DISC);
 
                         entries.add(ModItems.AGARTHIUM);
