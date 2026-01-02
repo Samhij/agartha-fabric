@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    },
+    {
+      "item": "agartha:white_monster"
+    }
+  ],
+  "result": {
+    "item": "agartha:concentrated_caffeine"
+  }
+}

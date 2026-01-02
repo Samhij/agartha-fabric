@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "agartha:concentrated_caffeine"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_white_monster": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "agartha:white_monster"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_white_monster",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "agartha:concentrated_caffeine"
+    ]
+  },
+  "sends_telemetry_event": false
+}
