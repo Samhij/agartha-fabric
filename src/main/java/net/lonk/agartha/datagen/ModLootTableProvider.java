@@ -11,7 +11,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        addDrop(ModBlocks.AGARTHIUM_BLOCK);
-        addDrop(ModBlocks.AGARTHIUM_ORE);
+        dropSelf(ModBlocks.AGARTHIUM_BLOCK);
+        dropSelf(ModBlocks.AGARTHIUM_ORE);
     }
 }

@@ -1,37 +1,37 @@
 package net.lonk.agartha.item.custom;
 
 import net.lonk.agartha.datagen.ModDynamicRegistryProvider;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.HoneyBottleItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.HoneyBottleItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class ConcentratedCaffeineItem extends HoneyBottleItem {
-    public ConcentratedCaffeineItem(Settings settings) {
+    public ConcentratedCaffeineItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (!world.isClient()) {
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+        if (!world.isClientSide()) {
             DamageSource source = new DamageSource(
-                    world.getRegistryManager()
-                    .get(RegistryKeys.DAMAGE_TYPE)
-                    .entryOf(ModDynamicRegistryProvider.HEART_ATTACK)
+                    world.registryAccess()
+                    .registryOrThrow(Registries.DAMAGE_TYPE)
+                    .getHolderOrThrow(ModDynamicRegistryProvider.HEART_ATTACK)
             );
 
-            user.damage(source, Float.MAX_VALUE);
+            user.hurt(source, Float.MAX_VALUE);
             return stack;
         }
-        return super.finishUsing(stack, world, user);
+        return super.finishUsingItem(stack, world, user);
     }
 
     @Override
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
+    public SoundEvent getDrinkingSound() {
+        return SoundEvents.GENERIC_DRINK;
     }
 }

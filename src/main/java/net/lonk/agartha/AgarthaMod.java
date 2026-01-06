@@ -14,8 +14,8 @@ import net.lonk.agartha.item.ModItemGroups;
 import net.lonk.agartha.item.ModItems;
 import net.lonk.agartha.sound.ModSounds;
 import net.lonk.agartha.world.gen.ModWorldGeneration;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +43,7 @@ public class AgarthaMod implements ModInitializer {
 		CustomPortalBuilder.beginPortal()
 				.frameBlock(Blocks.GLOWSTONE)
 				.lightWithItem(ModItems.WHITE_MONSTER)
-				.destDimID(Identifier.of(MOD_ID, "agartha"))
+				.destDimID(ResourceLocation.tryBuild(MOD_ID, "agartha"))
 				.tintColor(0xFFFFFF)
 				.registerPortal();
 	}

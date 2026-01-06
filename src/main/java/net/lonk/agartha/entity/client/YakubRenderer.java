@@ -2,19 +2,19 @@ package net.lonk.agartha.entity.client;
 
 import net.lonk.agartha.AgarthaMod;
 import net.lonk.agartha.entity.custom.YakubEntity;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class YakubRenderer extends MobEntityRenderer<YakubEntity, YakubModel> {
-    private static final Identifier TEXTURE = Identifier.of(AgarthaMod.MOD_ID, "textures/entity/yakub.png");
+public class YakubRenderer extends MobRenderer<YakubEntity, YakubModel> {
+    private static final ResourceLocation TEXTURE = ResourceLocation.tryBuild(AgarthaMod.MOD_ID, "textures/entity/yakub.png");
 
-    public YakubRenderer(EntityRendererFactory.Context context) {
-        super(context, new YakubModel(context.getPart(YakubModel.LAYER_LOCATION)), 0.5f);
+    public YakubRenderer(EntityRendererProvider.Context context) {
+        super(context, new YakubModel(context.bakeLayer(YakubModel.LAYER_LOCATION)), 0.5f);
     }
 
     @Override
-    public Identifier getTexture(YakubEntity entity) {
+    public ResourceLocation getTextureLocation(YakubEntity entity) {
         return TEXTURE;
     }
 }

@@ -17,7 +17,7 @@ public class ModEnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.WHITE_MONSTER, "White Monster");
         translationBuilder.add(ModItems.CONCENTRATED_CAFFEINE, "Concentrated Caffeine");
         translationBuilder.add(ModItems.DOWN_UNDER_MUSIC_DISC, "Music Disc");
-        translationBuilder.add(ModItems.DOWN_UNDER_MUSIC_DISC.getTranslationKey() + ".desc", "YourLocalSchizo - Down Under - Agartha Remix");
+        translationBuilder.add(ModItems.DOWN_UNDER_MUSIC_DISC.getDescriptionId() + ".desc", "YourLocalSchizo - Down Under - Agartha Remix");
 
         translationBuilder.add(ModItems.AGARTHIUM, "Agarthium");
         translationBuilder.add(ModItems.AGARTHAN_RESIDUE, "Agarthan Residue");

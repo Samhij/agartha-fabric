@@ -3,119 +3,119 @@ package net.lonk.agartha.world.biome;
 import net.lonk.agartha.AgarthaMod;
 import net.lonk.agartha.sound.ModSounds;
 import net.lonk.agartha.world.ModPlacedFeatures;
-import net.minecraft.client.sound.MusicType;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.biome.GenerationSettings;
-import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.Musics;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class ModBiomes {
-    public static final RegistryKey<Biome> SNOWY_CAVES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(AgarthaMod.MOD_ID, "snowy_caves"));
-    public static final RegistryKey<Biome> LUSH_MEADOW = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(AgarthaMod.MOD_ID, "lush_meadow"));
+    public static final ResourceKey<Biome> SNOWY_CAVES = ResourceKey.create(Registries.BIOME, ResourceLocation.tryBuild(AgarthaMod.MOD_ID, "snowy_caves"));
+    public static final ResourceKey<Biome> LUSH_MEADOW = ResourceKey.create(Registries.BIOME, ResourceLocation.tryBuild(AgarthaMod.MOD_ID, "lush_meadow"));
 
-    public static void bootstrap(Registerable<Biome> context) {
+    public static void bootstrap(BootstapContext<Biome> context) {
         context.register(SNOWY_CAVES, snowyCaves(context));
         context.register(LUSH_MEADOW, lushMeadow(context));
     }
 
-    public static void globalOverworldGeneration(GenerationSettings.LookupBackedBuilder builder) {
-        DefaultBiomeFeatures.addLandCarvers(builder);
-        DefaultBiomeFeatures.addAmethystGeodes(builder);
-        DefaultBiomeFeatures.addDungeons(builder);
-        DefaultBiomeFeatures.addMineables(builder);
-        DefaultBiomeFeatures.addSprings(builder);
+    public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(builder);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(builder);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(builder);
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
+        BiomeDefaultFeatures.addDefaultSprings(builder);
     }
 
-    public static Biome snowyCaves(Registerable<Biome> context) {
-        SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+    public static Biome snowyCaves(BootstapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
-        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.GOAT, 5, 4, 6));
-        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.RABBIT, 4, 2, 3));
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.GOAT, 5, 4, 6));
+        spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 4, 2, 3));
 
-        GenerationSettings.LookupBackedBuilder biomeBuilder = new GenerationSettings.LookupBackedBuilder(
-                context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER)
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(
+                context.lookup(Registries.PLACED_FEATURE),
+                context.lookup(Registries.CONFIGURED_CARVER)
         );
 
         // Global features
         globalOverworldGeneration(biomeBuilder);
 
         // Dripstone features for ceiling
-        DefaultBiomeFeatures.addDripstone(biomeBuilder);
+        BiomeDefaultFeatures.addDripstone(biomeBuilder);
 
         // Frozen peaks features for ground
-        DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultDisks(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
 
         // ADD THIS: Snow cover feature to hide grass
-        biomeBuilder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-                context.getRegistryLookup(RegistryKeys.PLACED_FEATURE).getOrThrow(ModPlacedFeatures.SNOW_COVER_PLACED));
+        biomeBuilder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION,
+                context.lookup(Registries.PLACED_FEATURE).getOrThrow(ModPlacedFeatures.SNOW_COVER_PLACED));
 
-        return new Biome.Builder()
-                .precipitation(true)
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
                 .temperature(-1.0f)
                 .downfall(0.9f)
-                .effects(new BiomeEffects.Builder()
+                .specialEffects(new BiomeSpecialEffects.Builder()
                         .waterColor(0x3938C9)
                         .waterFogColor(0x050533)
                         .skyColor(0x8CB8FF)
-                        .grassColor(0x80B497)
-                        .foliageColor(0x60A17B)
+                        .grassColorOverride(0x80B497)
+                        .foliageColorOverride(0x60A17B)
                         .fogColor(0xC0D8FF)
-                        .music(MusicType.createIngameMusic(RegistryEntry.of(ModSounds.DOWN_UNDER)))
+                        .backgroundMusic(Musics.createGameMusic(Holder.direct(ModSounds.DOWN_UNDER)))
                         .build())
-                .spawnSettings(spawnBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
                 .generationSettings(biomeBuilder.build())
                 .build();
     }
 
-    public static Biome lushMeadow(Registerable<Biome> context) {
-        SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+    public static Biome lushMeadow(BootstapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
-        GenerationSettings.LookupBackedBuilder biomeBuilder = new GenerationSettings.LookupBackedBuilder(
-                context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER)
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(
+                context.lookup(Registries.PLACED_FEATURE),
+                context.lookup(Registries.CONFIGURED_CARVER)
         );
 
         // Global features
         globalOverworldGeneration(biomeBuilder);
 
         // Lush caves features for ceiling
-        DefaultBiomeFeatures.addLushCavesDecoration(biomeBuilder);
-        DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
+        BiomeDefaultFeatures.addLushCavesVegetationFeatures(biomeBuilder);
+        BiomeDefaultFeatures.addMossyStoneBlock(biomeBuilder);
 
         // Meadow features for ground (includes trees!)
-        DefaultBiomeFeatures.addMeadowFlowers(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultDisks(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
-        DefaultBiomeFeatures.addExtraDefaultFlowers(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
+        BiomeDefaultFeatures.addMeadowVegetation(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+        BiomeDefaultFeatures.addWarmFlowers(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
 
-        return new Biome.Builder()
-                .precipitation(true)
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
                 .temperature(0.5f) // Mild temperature
                 .downfall(0.8f) // High rainfall for lush vegetation
-                .effects(new BiomeEffects.Builder()
+                .specialEffects(new BiomeSpecialEffects.Builder()
                         .waterColor(0x44aff5)
                         .waterFogColor(0x041633)
                         .skyColor(0x77adff) // Bright meadow sky
-                        .grassColor(0x6ab545) // Vibrant green grass
-                        .foliageColor(0x6ab545)
+                        .grassColorOverride(0x6ab545) // Vibrant green grass
+                        .foliageColorOverride(0x6ab545)
                         .fogColor(0xc0d8ff)
-                        .music(MusicType.createIngameMusic(RegistryEntry.of(ModSounds.DOWN_UNDER)))
+                        .backgroundMusic(Musics.createGameMusic(Holder.direct(ModSounds.DOWN_UNDER)))
                         .build())
-                .spawnSettings(spawnBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
                 .generationSettings(biomeBuilder.build())
                 .build();
     }

@@ -5,22 +5,22 @@ import net.lonk.agartha.AgarthaMod;
 import net.lonk.agartha.item.custom.ConcentratedCaffeineItem;
 import net.lonk.agartha.item.custom.WhiteMonsterItem;
 import net.lonk.agartha.sound.ModSounds;
-import net.minecraft.item.Item;
-import net.minecraft.item.MusicDiscItem;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.RecordItem;
 
 public class ModItems {
     public static final Item WHITE_MONSTER = registerItem("white_monster",
-            new WhiteMonsterItem(new FabricItemSettings().rarity(Rarity.RARE).maxDamage(5)));
+            new WhiteMonsterItem(new FabricItemSettings().rarity(Rarity.RARE).durability(5)));
 
     public static final Item CONCENTRATED_CAFFEINE = registerItem("concentrated_caffeine",
             new ConcentratedCaffeineItem(new FabricItemSettings().rarity(Rarity.EPIC)));
 
     public static final Item DOWN_UNDER_MUSIC_DISC = registerItem("down_under_music_disc",
-            new MusicDiscItem(7, ModSounds.DOWN_UNDER, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), 158));
+            new RecordItem(7, ModSounds.DOWN_UNDER, new FabricItemSettings().stacksTo(1).rarity(Rarity.RARE), 158));
 
     public static final Item AGARTHIUM = registerItem("agarthium",
             new Item(new FabricItemSettings()));
@@ -29,7 +29,7 @@ public class ModItems {
             new Item(new FabricItemSettings()));
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(AgarthaMod.MOD_ID, name), item);
+        return Registry.register(BuiltInRegistries.ITEM, ResourceLocation.tryBuild(AgarthaMod.MOD_ID, name), item);
     }
 
     public static void registerItems() {

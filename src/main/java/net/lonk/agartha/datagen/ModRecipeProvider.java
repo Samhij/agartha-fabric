@@ -4,11 +4,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.lonk.agartha.block.ModBlocks;
 import net.lonk.agartha.item.ModItems;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.book.RecipeCategory;
-
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.item.Items;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -19,21 +18,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    public void generate(Consumer<RecipeJsonProvider> consumer) {
-        offerSmelting(consumer, List.of(ModBlocks.AGARTHIUM_ORE), RecipeCategory.MISC, ModItems.AGARTHAN_RESIDUE, 0.25f, 200, "agarthium");
-        offerBlasting(consumer, List.of(ModBlocks.AGARTHIUM_ORE), RecipeCategory.MISC, ModItems.AGARTHAN_RESIDUE, 0.25f, 100, "agarthium");
+    public void buildRecipes(Consumer<FinishedRecipe> consumer) {
+        oreSmelting(consumer, List.of(ModBlocks.AGARTHIUM_ORE), RecipeCategory.MISC, ModItems.AGARTHAN_RESIDUE, 0.25f, 200, "agarthium");
+        oreBlasting(consumer, List.of(ModBlocks.AGARTHIUM_ORE), RecipeCategory.MISC, ModItems.AGARTHAN_RESIDUE, 0.25f, 100, "agarthium");
 
-        offerReversibleCompactingRecipes(consumer, RecipeCategory.MISC, ModItems.AGARTHIUM, RecipeCategory.MISC, ModBlocks.AGARTHIUM_BLOCK);
+        nineBlockStorageRecipes(consumer, RecipeCategory.MISC, ModItems.AGARTHIUM, RecipeCategory.MISC, ModBlocks.AGARTHIUM_BLOCK);
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CONCENTRATED_CAFFEINE)
-                .input(ModItems.WHITE_MONSTER, 9)
-                .criterion(hasItem(ModItems.WHITE_MONSTER), conditionsFromItem(ModItems.WHITE_MONSTER))
-                .offerTo(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CONCENTRATED_CAFFEINE)
+                .requires(ModItems.WHITE_MONSTER, 9)
+                .unlockedBy(getHasName(ModItems.WHITE_MONSTER), has(ModItems.WHITE_MONSTER))
+                .save(consumer);
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.AGARTHIUM)
-                .input(ModItems.AGARTHAN_RESIDUE, 4)
-                .input(Items.AMETHYST_SHARD, 4)
-                .criterion(hasItem(ModItems.AGARTHAN_RESIDUE), conditionsFromItem(ModItems.AGARTHAN_RESIDUE))
-                .offerTo(consumer, "agarthium_from_agarthan_residue");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.AGARTHIUM)
+                .requires(ModItems.AGARTHAN_RESIDUE, 4)
+                .requires(Items.AMETHYST_SHARD, 4)
+                .unlockedBy(getHasName(ModItems.AGARTHAN_RESIDUE), has(ModItems.AGARTHAN_RESIDUE))
+                .save(consumer, "agarthium_from_agarthan_residue");
     }
 }

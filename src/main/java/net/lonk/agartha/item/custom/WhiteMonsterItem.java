@@ -1,35 +1,35 @@
 package net.lonk.agartha.item.custom;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.HoneyBottleItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.HoneyBottleItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class WhiteMonsterItem extends HoneyBottleItem {
-    public WhiteMonsterItem(Settings settings) {
+    public WhiteMonsterItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (!world.isClient()) {
-            user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 12000, 2));
-            user.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 10));
-            stack.damage(1, user, (player) -> player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+        if (!world.isClientSide()) {
+            user.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 12000, 2));
+            user.addEffect(new MobEffectInstance(MobEffects.SATURATION, 20, 10));
+            stack.hurtAndBreak(1, user, (player) -> player.broadcastBreakEvent(EquipmentSlot.MAINHAND));
             return stack;
         } else {
-            return super.finishUsing(stack, world, user);
+            return super.finishUsingItem(stack, world, user);
         }
 
     }
 
     @Override
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
+    public SoundEvent getDrinkingSound() {
+        return SoundEvents.GENERIC_DRINK;
     }
 }

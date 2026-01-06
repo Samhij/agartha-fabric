@@ -7,8 +7,8 @@ import net.lonk.agartha.world.ModConfiguredFeatures;
 import net.lonk.agartha.world.ModPlacedFeatures;
 import net.lonk.agartha.world.biome.ModBiomes;
 import net.lonk.agartha.world.dimension.ModDimensions;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 
 public class AgarthaModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -26,10 +26,10 @@ public class AgarthaModDataGenerator implements DataGeneratorEntrypoint {
 	}
 
 	@Override
-	public void buildRegistry(RegistryBuilder registryBuilder) {
-		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, ModDimensions::boostrapType);
+	public void buildRegistry(RegistrySetBuilder registryBuilder) {
+		registryBuilder.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+		registryBuilder.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+		registryBuilder.add(Registries.BIOME, ModBiomes::bootstrap);
+		registryBuilder.add(Registries.DIMENSION_TYPE, ModDimensions::boostrapType);
 	}
 }

@@ -1,12 +1,12 @@
-// 1.20.1	2026-01-01T17:18:41.1997757	Agartha/Model Definitions
-7e2af2357aed594dae5faf42dbaa66c505e1b27c assets\agartha\models\item\agarthium_block.json
-66076300091e9ff8907a48a2716ba8c5ada9e0e1 assets\agartha\models\item\white_monster.json
-aad772c1a60607206feda6dbc993f5d2e39a9212 assets\agartha\models\item\agarthium.json
-0a4cb1d10d822bda8411c8fb2b2c75601813d89f assets\agartha\blockstates\agarthium_ore.json
-51c5b248327869760e81e38998e48e21945f10ce assets\agartha\models\item\down_under_music_disc.json
-93d6c13f47d5e9f6dc298286aaa778859f0c3543 assets\agartha\models\block\agarthium_ore.json
-540f1c463924be552e5c6c55011bc7c504db0872 assets\agartha\models\block\agarthium_block.json
-e9b3b9dfbb44964f002ab5eb73aedc851c7eafb9 assets\agartha\models\item\concentrated_caffeine.json
-04b40a88f49e1686897148ff70bfd4b99b056bbe assets\agartha\models\item\agarthan_residue.json
-e579638db5fe1dfc30378668bd8884ddab2bee23 assets\agartha\models\item\agarthium_ore.json
-69c4937c2dfb8ff264466e690e1069841fd70f97 assets\agartha\blockstates\agarthium_block.json
+// 1.20.1	2026-01-06T18:30:55.220081841	Agartha/Model Definitions
+e9b3b9dfbb44964f002ab5eb73aedc851c7eafb9 assets/agartha/models/item/concentrated_caffeine.json
+93d6c13f47d5e9f6dc298286aaa778859f0c3543 assets/agartha/models/block/agarthium_ore.json
+e579638db5fe1dfc30378668bd8884ddab2bee23 assets/agartha/models/item/agarthium_ore.json
+04b40a88f49e1686897148ff70bfd4b99b056bbe assets/agartha/models/item/agarthan_residue.json
+69c4937c2dfb8ff264466e690e1069841fd70f97 assets/agartha/blockstates/agarthium_block.json
+51c5b248327869760e81e38998e48e21945f10ce assets/agartha/models/item/down_under_music_disc.json
+66076300091e9ff8907a48a2716ba8c5ada9e0e1 assets/agartha/models/item/white_monster.json
+0a4cb1d10d822bda8411c8fb2b2c75601813d89f assets/agartha/blockstates/agarthium_ore.json
+aad772c1a60607206feda6dbc993f5d2e39a9212 assets/agartha/models/item/agarthium.json
+540f1c463924be552e5c6c55011bc7c504db0872 assets/agartha/models/block/agarthium_block.json
+7e2af2357aed594dae5faf42dbaa66c505e1b27c assets/agartha/models/item/agarthium_block.json
